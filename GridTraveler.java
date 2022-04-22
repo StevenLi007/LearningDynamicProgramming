@@ -18,9 +18,13 @@ class GridTraveler {
     
     public int memGridTraveler(int rowCnt, int colCnt, HashMap<String, Integer> memo) {
         String key = String.valueOf(rowCnt) + "," + String.valueOf(colCnt);
+        String invertedKey = String.valueOf(colCnt) + "," + String.valueOf(rowCnt);
         // are the args in my memo
         if (memo.containsKey(key)) {
             return memo.get(key);
+        }
+        if (memo.containsKey(invertedKey)) {
+            return memo.get(invertedKey);
         }
         if (rowCnt == 1 && colCnt == 1) {
             return 1;
@@ -34,7 +38,9 @@ class GridTraveler {
 
     public static void main(String[] args) {
         GridTraveler obj = new GridTraveler();
-        System.out.println(obj.recGridTraveler(2,3));
-        System.out.println(obj.recGridTraveler(3,3));
+        HashMap<String, Integer> memo = new HashMap<>();
+        System.out.println(obj.memGridTraveler(2, 3, memo));
+        System.out.println(obj.memGridTraveler(3, 3, memo));
+        System.out.println(obj.memGridTraveler(18, 18, memo));
     }
 }
