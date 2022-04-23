@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-// import java.util.HashMap;
+import java.util.HashMap;
 
 public class CanSum {
     public boolean recCanSum(int targetSum, ArrayList<Integer> numbers) {
@@ -16,12 +16,32 @@ public class CanSum {
         }
         return false;
     }
+
+    public boolean memCanSum(int targetSum, ArrayList<Integer> numbers, HashMap<Integer, Boolean> memo) {
+        if (targetSum == 0) {
+            return true;
+        }
+        if (targetSum < 0) {
+            return false;
+        }
+        if (memo.containsKey(targetSum)) {
+            return memo.get(targetSum);
+        }
+        for (Integer num : numbers) {
+            if (memCanSum(targetSum - num, numbers, memo)) {
+                memo.put(targetSum, true);
+                return true;
+            }
+        }
+        memo.put(targetSum, false);
+        return false;
+    }
     public static void main(String[] args) {
         CanSum obj = new CanSum();
         ArrayList<Integer> numbers = new ArrayList<>();
-        numbers.add(2);
-        numbers.add(4);
-        numbers.add(3);
-        System.out.println(obj.recCanSum(7, numbers));
+        HashMap<Integer, Boolean> memo = new HashMap<>();
+        numbers.add(7);
+        numbers.add(14);
+        System.out.println(obj.memCanSum(300, numbers, memo));
     }
 }
