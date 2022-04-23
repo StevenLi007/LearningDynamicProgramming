@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class HowSum {
     public ArrayList<Integer> recHowSum(int targetSum, ArrayList<Integer> numbers) {
         if (targetSum == 0) {
-            return new ArrayList<Integer>(); //how to do this in Java? if i return new array list every time it wouldnt get passed down
+            return new ArrayList<Integer>();
         }
         if (targetSum < 0) {
             return null;
@@ -18,12 +18,34 @@ public class HowSum {
         }
         return null;
     }
+
+    public ArrayList<Integer> memHowSum(int targetSum, ArrayList<Integer> numbers, HashMap<Integer, ArrayList<Integer>> memo) {
+        if (targetSum == 0) {
+            return new ArrayList<Integer>();
+        }
+        if (targetSum < 0) {
+            return null;
+        }
+        if (memo.containsKey(targetSum)) {
+            return memo.get(targetSum);
+        }
+        for (Integer num : numbers) {
+            ArrayList<Integer> result = memHowSum(targetSum - num, numbers, memo);
+            if (result != null) {
+                result.add(num);
+                memo.put(targetSum, result);
+                return memo.get(targetSum);
+            }
+        }
+        memo.put(targetSum, null);
+        return null;
+    }
     public static void main(String[] args) {
         HowSum obj = new HowSum();
         ArrayList<Integer> numbers = new ArrayList<>();
-        numbers.add(3);
-        numbers.add(2);
-        numbers.add(2);
-        System.out.println(obj.recHowSum(7, numbers));
+        HashMap<Integer, ArrayList<Integer>> memo = new HashMap<>();
+        numbers.add(7);
+        numbers.add(14);
+        System.out.println(obj.memHowSum(300, numbers, memo));
     }
 }
