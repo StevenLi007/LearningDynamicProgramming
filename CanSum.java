@@ -36,12 +36,37 @@ public class CanSum {
         memo.put(targetSum, false);
         return false;
     }
+
+    public boolean tabCanSum(int target, ArrayList<Integer> numbers) {
+        // create the table and initialize with false
+        ArrayList<Boolean> canSum = new ArrayList<>();
+        for (int i = 0; i <= target; i++) {
+            canSum.add(false);
+        }
+        // initialize seed value
+        canSum.set(0, true);
+        // go through the table and set the elements whose index can be summed to true
+        for (int i = 0; i <= canSum.size(); i++) {
+            if (canSum.get(i)) {
+                for (Integer number : numbers) {
+                    if (i + number <= target) {
+                        canSum.set(i + number, true);
+                    }
+                }
+            }
+        }
+        // the answer is stored in the element of target index
+        System.out.println(canSum);
+        return canSum.get(target);
+    }
+
     public static void main(String[] args) {
         CanSum obj = new CanSum();
         ArrayList<Integer> numbers = new ArrayList<>();
         HashMap<Integer, Boolean> memo = new HashMap<>();
-        numbers.add(7);
-        numbers.add(14);
-        System.out.println(obj.memCanSum(300, numbers, memo));
+        numbers.add(2);
+        numbers.add(3);
+        // System.out.println(obj.memCanSum(300, numbers, memo));
+        System.out.println(obj.tabCanSum(25, numbers));
     }
 }

@@ -1,1 +1,0 @@
-![Alvin's Recipe](Screenshots/Alvin's_Recipe.png)

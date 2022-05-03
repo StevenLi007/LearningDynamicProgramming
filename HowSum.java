@@ -40,6 +40,30 @@ public class HowSum {
         memo.put(targetSum, null);
         return null;
     }
+
+    public static ArrayList<Integer> tabHowSum(int sum, ArrayList<Integer> nums) {
+        // is there a java ds that allows multiple storage as necessitated by this prob?
+
+        // create table and init w/ empty arrs
+        ArrayList<ArrayList<Integer>> howSum = new ArrayList<>();
+        for (int i = 0; i <= sum; i++) {
+            howSum.add(new ArrayList<Integer>());
+        }
+        // iterate thru the table, and for any non-null elem, use it as a base to add valid elem of nums to the local arr
+        // when adding to the next elem, copy over how the smaller elem was made 
+        for (int i = 0; i <= howSum.size(); i++) {
+            if (howSum.get(i) != null) {
+                for (Integer num : nums) {
+                    int mult = 1;
+                    if (mult * i + num <= howSum.size()) {
+
+                    }
+                }
+            }
+        }
+        // return the arr at the end of the table
+    }
+
     public static void main(String[] args) {
         HowSum obj = new HowSum();
         ArrayList<Integer> numbers = new ArrayList<>();
