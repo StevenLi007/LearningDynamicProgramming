@@ -42,34 +42,43 @@ public class HowSum {
     }
 
     public static ArrayList<Integer> tabHowSum(int sum, ArrayList<Integer> nums) {
-        // is there a java ds that allows multiple storage as necessitated by this prob?
-
-        // create table and init w/ empty arrs
+        // create table and init w/ null
         ArrayList<ArrayList<Integer>> howSum = new ArrayList<>();
         for (int i = 0; i <= sum; i++) {
-            howSum.add(new ArrayList<Integer>());
+            howSum.add(null);
         }
+        // init index 0 w/ empty arr
+        howSum.set(0, new ArrayList<Integer>());
+        System.out.println(howSum);
+
         // iterate thru the table, and for any non-null elem, use it as a base to add valid elem of nums to the local arr
         // when adding to the next elem, copy over how the smaller elem was made 
-        for (int i = 0; i <= howSum.size(); i++) {
+        for (int i = 0; i < howSum.size(); i++) {
             if (howSum.get(i) != null) {
                 for (Integer num : nums) {
-                    int mult = 1;
-                    if (mult * i + num <= howSum.size()) {
-
+                    if (i + num <= howSum.size()) {
+                        ArrayList<Integer> arr = new ArrayList<>();
+                        for (int j = 0; j < howSum.get(i).size(); j++) {
+                            arr.add(howSum.get(i).get(j));
+                        }
+                        arr.add(num);
+                        howSum.set(i + num, arr);
                     }
                 }
             }
         }
         // return the arr at the end of the table
+        System.out.println(howSum);
+        return howSum.get(sum);
     }
 
     public static void main(String[] args) {
         HowSum obj = new HowSum();
         ArrayList<Integer> numbers = new ArrayList<>();
         HashMap<Integer, ArrayList<Integer>> memo = new HashMap<>();
+        numbers.add(5);
         numbers.add(7);
-        numbers.add(14);
-        System.out.println(obj.memHowSum(300, numbers, memo));
+        // System.out.println(obj.memHowSum(300, numbers, memo));
+        System.out.println(obj.tabHowSum(10, numbers));
     }
 }
