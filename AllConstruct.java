@@ -33,3 +33,9 @@ public class AllConstruct {
         System.out.println(obj.recAllConstruct("purple", words));
     }
 }
+
+/**
+ * why I'm stuck:
+ * - implementing 2D arrays in Java and how to update it and how the references go 
+ *   (i.e. if I'm updating the right array)
+ */
