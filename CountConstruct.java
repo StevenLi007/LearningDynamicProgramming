@@ -55,7 +55,7 @@ public class CountConstruct {
             if (cnts.get(i) != 0) {
                 for (String word : words) {
                     if (target.substring(i).indexOf(word) == 0 && i + word.length() < cnts.size()) {
-                        cnts.set(i + word.length(), cnts.get(i + word.length()) + 1);
+                        cnts.set(i + word.length(), cnts.get(i + word.length()) + cnts.get(i));
                         System.out.println(cnts);
                     }
                 }
