@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 
 class GridTraveler {
     public int recGridTraveler(int rowCnt, int colCnt) {
@@ -36,11 +37,36 @@ class GridTraveler {
         return memo.get(key);
     }
 
+    public int tabGridTraveler(int r, int c) {
+        ArrayList<ArrayList<Integer>> grid = new ArrayList<>();
+        for (int i = 0; i <= r; i++) {
+            grid.add(new ArrayList<Integer>());
+            for (int j = 0; j <= c; j++) {
+                grid.get(i).add(0);
+            }
+        }
+        grid.get(1).set(1, 1);
+        // System.out.println(grid);
+        for (int i = 0; i <= r; i++) {
+            for (int j = 0; j <= c; j++) {
+                if (j + 1 <= c) {
+                    grid.get(i).set(j + 1, grid.get(i).get(j + 1) + grid.get(i).get(j));
+                }
+                if (i + 1 <= r) {
+                    grid.get(i + 1).set(j, grid.get(i + 1).get(j) + grid.get(i).get(j));
+                }
+            }
+        }
+        // System.out.println(grid);
+        return grid.get(r).get(c);
+    }
+
     public static void main(String[] args) {
         GridTraveler obj = new GridTraveler();
         HashMap<String, Integer> memo = new HashMap<>();
-        System.out.println(obj.memGridTraveler(2, 3, memo));
-        System.out.println(obj.memGridTraveler(3, 3, memo));
-        System.out.println(obj.memGridTraveler(18, 18, memo));
+        // System.out.println(obj.memGridTraveler(2, 3, memo));
+        // System.out.println(obj.memGridTraveler(3, 3, memo));
+        // System.out.println(obj.memGridTraveler(18, 18, memo));
+        System.out.println(obj.tabGridTraveler(3, 3));
     }
 }
