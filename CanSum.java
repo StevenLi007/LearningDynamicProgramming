@@ -46,10 +46,10 @@ public class CanSum {
         // initialize seed value
         canSum.set(0, true);
         // go through the table and set the elements whose index can be summed to true
-        for (int i = 0; i <= canSum.size(); i++) {
+        for (int i = 0; i < canSum.size() - 1; i++) {
             if (canSum.get(i)) {
                 for (Integer number : numbers) {
-                    if (i + number <= target) {
+                    if (i + number < canSum.size()) {
                         canSum.set(i + number, true);
                     }
                 }
@@ -65,8 +65,8 @@ public class CanSum {
         ArrayList<Integer> numbers = new ArrayList<>();
         HashMap<Integer, Boolean> memo = new HashMap<>();
         numbers.add(2);
-        numbers.add(3);
+        numbers.add(1);
         // System.out.println(obj.memCanSum(300, numbers, memo));
-        System.out.println(obj.tabCanSum(25, numbers));
+        System.out.println(obj.tabCanSum(4, numbers));
     }
 }

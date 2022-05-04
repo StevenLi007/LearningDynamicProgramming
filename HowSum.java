@@ -49,14 +49,14 @@ public class HowSum {
         }
         // init index 0 w/ empty arr
         howSum.set(0, new ArrayList<Integer>());
-        System.out.println(howSum);
+        // System.out.println(howSum);
 
         // iterate thru the table, and for any non-null elem, use it as a base to add valid elem of nums to the local arr
         // when adding to the next elem, copy over how the smaller elem was made 
-        for (int i = 0; i < howSum.size(); i++) {
+        for (int i = 0; i < howSum.size() - 1; i++) {
             if (howSum.get(i) != null) {
                 for (Integer num : nums) {
-                    if (i + num <= howSum.size()) {
+                    if (i + num < howSum.size()) {
                         ArrayList<Integer> arr = new ArrayList<>();
                         for (int j = 0; j < howSum.get(i).size(); j++) {
                             arr.add(howSum.get(i).get(j));
@@ -68,7 +68,7 @@ public class HowSum {
             }
         }
         // return the arr at the end of the table
-        System.out.println(howSum);
+        // System.out.println(howSum);
         return howSum.get(sum);
     }
 
@@ -76,9 +76,9 @@ public class HowSum {
         HowSum obj = new HowSum();
         ArrayList<Integer> numbers = new ArrayList<>();
         HashMap<Integer, ArrayList<Integer>> memo = new HashMap<>();
-        numbers.add(5);
-        numbers.add(7);
+        numbers.add(2);
+        numbers.add(1);
         // System.out.println(obj.memHowSum(300, numbers, memo));
-        System.out.println(obj.tabHowSum(10, numbers));
+        System.out.println(obj.tabHowSum(4, numbers));
     }
 }
