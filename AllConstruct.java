@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class AllConstruct {
     public ArrayList<ArrayList<String>> recAllConstruct(String target, ArrayList<String> words) {
@@ -23,7 +24,12 @@ public class AllConstruct {
         return result;
     }
 
-    public ArrayList<ArrayList<String>> memAllConstruct(String target, ArrayList<String> words) {
+    public ArrayList<ArrayList<String>> memAllConstruct(String target, 
+            ArrayList<String> words, HashMap<String, ArrayList<String>> memo) {
+        return null;
+    }
+
+    public ArrayList<ArrayList<String>> tabAllConstruct(String target, ArrayList<String> words) {
         return null;
     }
 
